@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABCKU</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+    <div class="navv">
+        <nav>
+            <div class = "logo">
+                <span>ABCKU</span>
+            </div>
+            <ul class = "navi">
+                <li><a href="ABCKU_home.html">Home</a></li>
+                <li><a href="ABCKU_belajar.html">Belajar</a></li>
+                <li><a href="ABCKU_tentangkami.html">Tentang Kami</a></li>
+                <li><a href="ABCKU_kontak.html">Kontak</a></li>
+            </ul>
+        </nav> 
+    </div>    
+    </header>
+    
+<section id="home" class="page active">
+            
+            
+            <div class="alphabet-section">
+                <h2>Pilih Huruf untuk Dipelajari</h2>
+                <div class="alphabet-container" id="alphabet-container">
+                    <!-- Huruf akan di-generate oleh JavaScript -->
+                </div>
+                
+                <div class="letter-detail" id="letter-detail">
+                    <div class="selected-letter" id="selected-letter">A</div>
+                    <div class="letter-info">
+                        <div class="writing-guide">
+                            <h3>Cara Menulis</h3>
+                            <ol class="writing-steps" id="writing-steps">
+                                <!-- Langkah menulis akan diisi oleh JavaScript -->
+                            </ol>
+                        </div>
+                        <div class="spelling-guide">
+                            <h3>Cara Mengeja</h3>
+                            <ul class="spelling-examples" id="spelling-examples">
+                                <!-- Contoh pengejaan akan diisi oleh JavaScript -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<script>
+    // Membuat daftar huruf A–Z
+    const alphabetContainer = document.getElementById('alphabet-container');
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+
+    const letter2 = ["(A)", "(Be)", "(Ce)","(De)", "(E)", "(Ef)","(Ge)", "(Ha)", "(I)","(Je)", "(Ka)", "(El)",
+        "(Em)", "(En)", "(O)","(Pe)", "(Ki)", "(Er)","(Es)", "(Te)", "(U)","(Ve)", "(We)", "(Eks)","(Ye)", "(zet)"] 
+
+    alphabet.forEach((letter, index) => {
+        const letterCard = document.createElement('div');
+        letterCard.className = 'letter-card';
+        letterCard.innerHTML = `
+            <div class="letter">${letter}</div>
+            <div class="letter-name">Huruf ${letter} ${letter2[index]}</div>
+        `;
+        letterCard.addEventListener('click', () => openPopup(letter));
+        alphabetContainer.appendChild(letterCard);
+    });
+
+    // --- DATA VIDEO & AUDIO ---
+    const alphabetData = {
+        A: {
+            video: "File/video/A.gif", 
+            audio: "File/audio/A.m4a"
+        },
+        B: {
+            video: "File/video/B.gif",  
+            audio: "File/audio/B.m4a"
+        },
+        C: {
+            video: "File/video/C.gif",  
+            audio: "File/audio/C.m4a"
+        },
+        D: {
+            video: "File/video/D.gif",  
+            audio: "File/audio/D.m4a"
+        },
+        E: {
+            video: "File/video/E.gif",  
+            audio: "File/audio/E.m4a"
+        },
+        F: {
+            video: "File/video/F.gif",  
+            audio: "File/audio/F.m4a"
+        },
+        G: {
+            video: "File/video/G.gif",  
+            audio: "File/audio/G.m4a"
+        },
+        H: {
+            video: "File/video/H.gif",  
+            audio: "File/audio/H.m4a"
+        },
+        I: {
+            video: "File/video/I.gif",  
+            audio: "File/audio/I.m4a"
+        },
+        J: {
+            video: "File/video/J.gif",  
+            audio: "File/audio/J.m4a"
+        },
+        K: {
+            video: "File/video/K.gif",  
+            audio: "File/audio/K.m4a"
+        },
+        L: {
+            video: "File/video/L.gif",  
+            audio: "File/audio/L.m4a"
+        },
+        M: {
+            video: "File/video/M.gif",  
+            audio: "File/audio/M.m4a"
+        },
+        N: {
+            video: "File/video/N.gif",  
+            audio: "File/audio/N.m4a"
+        },
+        O: {
+            video: "File/video/O.gif",  
+            audio: "File/audio/O.m4a"
+        },
+        P: {
+            video: "File/video/P.gif",  
+            audio: "File/audio/P.m4a"
+        },
+        Q: {
+            video: "File/video/Q.gif",  
+            audio: "File/audio/Q.m4a"
+        },
+        R: {
+            video: "File/video/R.gif",  
+            audio: "File/audio/R.m4a"
+        },
+        S: {
+            video: "File/video/S.gif",  
+            audio: "File/audio/S.m4a"
+        },
+        T: {
+            video: "File/video/T.gif",  
+            audio: "File/audio/T.m4a"
+        },
+        U: {
+            video: "File/video/U.gif",  
+            audio: "File/audio/U.m4a"
+        },
+        V: {
+            video: "File/video/V.gif",  
+            audio: "File/audio/V.m4a"
+        },
+        W: {
+            video: "File/video/W.gif",  
+            audio: "File/audio/W.m4a"
+        },
+        X: {
+            video: "File/video/X.gif",  
+            audio: "File/audio/X.m4a"
+        },
+        Y: {
+            video: "File/video/Y.gif", 
+            audio: "File/audio/Y.m4a"
+        },
+        Z: {
+            video: "File/video/Z.gif",  
+            audio: "File/audio/Z.m4a"
+        }
+    };
+
+    let currentLetter = null;
+    let isGIFPlaying = false;
+
+    // --- POPUP FUNCTION ---
+    function openPopup(letter) {
+        currentLetter = letter;
+        document.getElementById("popup-letter").textContent = letter;
+
+        const videoElement = document.getElementById("popup-media");
+
+        // Cek apakah file adalah GIF
+        const isGIF = alphabetData[letter].video.toLowerCase().endsWith(".gif");
+
+        if (isGIF) {
+            // Ganti <video> menjadi gambar GIF
+            videoElement.outerHTML = `
+                <img id="popup-media" src="${alphabetData[letter].video}" style="width:100%; cursor:pointer;">
+            `;
+            isGIFPlaying = true;
+
+            // Tambahkan event klik GIF play/pause
+            document.getElementById("popup-media").onclick = toggleGIF;
+
+        } else {
+            // Jika video normal
+            videoElement.outerHTML = `
+                <video id="popup-media" width="100%" controls></video>
+            `;
+            const newVideo = document.getElementById("popup-media");
+            newVideo.src = alphabetData[letter].video;
+            newVideo.play();
+
+            newVideo.onclick = () => toggleVideo(newVideo);
+        }
+
+        // Update audio
+        const audioElement = document.getElementById("popup-audio");
+        audioElement.volume = 1.0;
+        audioElement.src = alphabetData[letter].audio;
+
+        document.getElementById("letter-popup").classList.add("active");
+    }
+
+    function toggleVideo(videoEl) {
+        if (videoEl.paused) videoEl.play();
+        else videoEl.pause();
+    }
+
+    function toggleGIF() {
+        const gif = document.getElementById("popup-media");
+
+        if (isGIFPlaying) {
+            // Pause GIF → ganti source ke frame pertama (trik pause GIF)
+            gif.src = alphabetData[currentLetter].video + "?pause"
+        } else {
+            // Play ulang → reload GIF
+            gif.src = alphabetData[currentLetter].video + "?t=" + new Date().getTime();
+        }
+
+        isGIFPlaying = !isGIFPlaying;
+    }
+
+    function closePopup() {
+        document.getElementById("letter-popup").classList.remove("active");
+
+        const media = document.getElementById("popup-media");
+
+        // Jika video → hentikan
+        if (media.tagName === "VIDEO") {
+            media.pause();
+            media.currentTime = 0;
+        }
+    }
+</script>
+
+
+<div id="letter-popup" class="popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">×</span>
+        <H1>Huruf</H1>
+        <h1 id="popup-letter" class="popup-letter">A</h1>
+
+<h3>Cara menulis</h3>
+<div class="media-box">
+    <video id="popup-media" width="100%"></video>
+</div>
+
+        
+    
+        <h3>Dengar Cara Mengeja</h3>
+        <button class="audio-btn" onclick="document.getElementById('popup-audio').play()">
+            🔊 Putar Suara
+        </button>
+        <audio id="popup-audio"></audio>
+    </div>
+</div>
+
+
+<footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <i class="fas fa-pencil-alt"></i>
+                    <span>ABCKU</span>
+                </div>
+                <div class="copyright">
+                    <p> © Kelompok sigma </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
